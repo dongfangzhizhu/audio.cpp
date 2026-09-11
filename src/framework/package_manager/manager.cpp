@@ -381,6 +381,10 @@ void configure_client(httplib::Client & client, long read_timeout_seconds) {
     client.set_read_timeout(read_timeout_seconds, 0);
     client.set_write_timeout(60, 0);
 #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
+    // On Windows, cpp-httplib's OpenSSL backend must explicitly import the
+    // Schannel ROOT/CA stores. Auto mode does not do that for this client and
+    // causes valid corporate/proxy certificates to fail verification.
+    client.enable_system_ca(true);
     client.enable_server_certificate_verification(true);
 #endif
 }
