@@ -120,6 +120,7 @@ std::string url_encode(std::string_view value, bool keep_slash) {
 
 std::string hf_url(const Package & package, const std::string & remote_path) {
     auto base = getenv_text("AUDIOCPP_HF_BASE_URL");
+    if (base.empty()) base = getenv_text("HF_ENDPOINT");
     if (base.empty()) base = "https://huggingface.co";
     while (!base.empty() && base.back() == '/') base.pop_back();
     return base + "/" + package.repo + "/resolve/" +

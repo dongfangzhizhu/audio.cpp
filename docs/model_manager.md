@@ -129,7 +129,8 @@ Hugging Face (`kind: "huggingface_snapshot"`) or ModelScope
 (`kind: "modelscope_snapshot"`); see
 [maintainers/model_specs.md](maintainers/model_specs.md) for the spec fields.
 The native endpoints can be overridden for mirrors or tests with
-`AUDIOCPP_HF_BASE_URL` (default `https://huggingface.co`) and
+`AUDIOCPP_HF_BASE_URL` (or the standard `HF_ENDPOINT` when the native-specific
+variable is unset; default `https://huggingface.co`) and
 `AUDIOCPP_MS_BASE_URL` (default `https://www.modelscope.cn`). The Python tool
 uses the standard `HF_ENDPOINT` for Hugging Face and the same
 `AUDIOCPP_MS_BASE_URL` for ModelScope.
