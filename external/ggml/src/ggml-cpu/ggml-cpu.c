@@ -2120,6 +2120,14 @@ static void ggml_compute_forward(struct ggml_compute_params * params, struct ggm
             {
                 ggml_compute_forward_ssm_scan(params, tensor);
             } break;
+        case GGML_OP_SSM_CONV_CAUSAL_SILU:
+            {
+                ggml_compute_forward_ssm_conv_causal_silu(params, tensor);
+            } break;
+        case GGML_OP_SSM_SCAN_MAMBA1:
+            {
+                ggml_compute_forward_ssm_scan_mamba1(params, tensor);
+            } break;
         case GGML_OP_WIN_PART:
             {
                 ggml_compute_forward_win_part(params, tensor);
@@ -2385,6 +2393,7 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
                 case GGML_UNARY_OP_SIGMOID:
                 case GGML_UNARY_OP_HARDSWISH:
                 case GGML_UNARY_OP_HARDSIGMOID:
+                case GGML_UNARY_OP_RSQRT:
                 case GGML_UNARY_OP_EXP:
                 case GGML_UNARY_OP_SOFTPLUS:
                 case GGML_UNARY_OP_EXPM1:
@@ -2521,6 +2530,8 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
         case GGML_OP_FLASH_ATTN_BACK:
         case GGML_OP_SSM_CONV:
         case GGML_OP_SSM_SCAN:
+        case GGML_OP_SSM_CONV_CAUSAL_SILU:
+        case GGML_OP_SSM_SCAN_MAMBA1:
             {
                 n_tasks = n_threads;
             } break;

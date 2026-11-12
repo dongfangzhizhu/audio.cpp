@@ -17,6 +17,8 @@ struct Conv1dConfig {
     bool use_bias = true;
     // Preserve BF16 convolution and bias rounding, with F32 graph outputs.
     bool bf16_compute = false;
+    // Stride-one, pre-padded convolution without an im2col matrix.
+    bool per_tap = false;
 };
 
 struct Conv1dWeights {
@@ -77,6 +79,8 @@ struct Conv2dConfig {
     bool cuda_f16_output = false;
     // Metal: FP32 per-tap GEMMs avoid materializing large im2col buffers.
     bool metal_per_tap = false;
+    // Opt-in Metal F32 implicit MMA, IC divisible by 32; other cases retain the existing path.
+    bool implicit_gemm = false;
 };
 
 struct Conv2dWeights {
