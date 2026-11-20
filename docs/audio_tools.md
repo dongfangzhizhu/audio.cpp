@@ -15,7 +15,7 @@
 | Mel-Band RoFormer | `mel_band_roformer` | `sep` | [Mel-Band RoFormer](#mel-band-roformer) |
 | Ming 3.0 Audio Tiny | `ming3_audio` | `s2s` spoken responses (also `asr`, `tts`, `clon`) | [Ming Audio](models/ming3_audio.md#spoken-response) |
 | MioCodec | `miocodec` | `vc`, `s2s` | [MioCodec](#miocodec) |
-| MossFormer2 | `mossformer2` | `sep` | [MossFormer2](models/mossformer2.md) |
+| MossFormer2 | `mossformer2` | `sep` speech separation, `s2s` enhancement/super-resolution | [MossFormer2](models/mossformer2.md) |
 | MuScriptor | `muscriptor` | audio to MIDI/events | [MuScriptor](#muscriptor) |
 | PersonaPlex | `personaplex` | `s2s` | [PersonaPlex](#personaplex) |
 | Real-time RE-USE | `realtime_reuse` | Offline / streaming `s2s` speech restoration | [Real-time RE-USE](models/realtime_reuse.md) |
@@ -405,11 +405,11 @@ audiocpp_cli --task s2s --family miocodec --model models/MioCodec-25Hz-44.1kHz-v
 | Option | Values | Default | Meaning |
 |---|---|---:|---|
 | `miocodec.weight_type` | `native`, `f32`, `f16`, `bf16`, `q8_0` | `f32` | Weight storage type. |
-| `miocodec.weight_context_mb` | integer >= 1 | `256` | Context or graph arena size in MiB. |
-| `miocodec.constant_context_mb` | integer >= 1 | `256` | Context or graph arena size in MiB. |
-| `miocodec.content_graph_arena_mb` | integer >= 1 | `512` | Context or graph arena size in MiB. |
-| `miocodec.global_graph_arena_mb` | integer >= 1 | `256` | Context or graph arena size in MiB. |
-| `miocodec.wave_graph_arena_mb` | integer >= 1 | `512` | Context or graph arena size in MiB. |
+| `miocodec.weight_context_mb` | integer >= 1 | `8` | Context or graph arena size in MiB. |
+| `miocodec.constant_context_mb` | integer >= 1 | `16` | Context or graph arena size in MiB. |
+| `miocodec.content_graph_arena_mb` | integer >= 1 | `32` | Context or graph arena size in MiB. |
+| `miocodec.global_graph_arena_mb` | integer >= 1 | `32` | Context or graph arena size in MiB. |
+| `miocodec.wave_graph_arena_mb` | integer >= 1 | `32` | Context or graph arena size in MiB. |
 
 ## MuScriptor
 
